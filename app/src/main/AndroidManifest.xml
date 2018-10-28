@@ -26,7 +26,7 @@
             android:name="com.baidu.speech.SECRET_KEY"
             android:value="g0XIOCOGgcEfdUdhGdBMfIcfG53si2hU"/>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -47,6 +47,11 @@
             android:configChanges="orientation|keyboardHidden|screenLayout"
             android:label="离线命令词"
             android:screenOrientation="portrait">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
 
         <activity
@@ -67,6 +72,15 @@
             android:label="在线识别设置"
             android:theme="@android:style/Theme.DeviceDefault.Light"
             android:screenOrientation="portrait"/>
+
+        <activity android:name=".DialActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity android:name=".RecoActivity" android:screenOrientation="portrait"
+            android:hardwareAccelerated="true">
+
+        </activity>
 
     </application>
 

@@ -15,19 +15,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        findViewById(R.id.offline).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.root).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,ActivityOfflineRecog.class));
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this,DialActivity.class));
             }
         });
-
-        findViewById(R.id.wakeUp).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,ActivityWakeUp.class));
-            }
-        });
+//        findViewById(R.id.offline).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(MainActivity.this,ActivityOfflineRecog.class));
+//            }
+//        });
+//
+//        findViewById(R.id.wakeUp).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(MainActivity.this,ActivityWakeUp.class));
+//            }
+//        });
 
     }
 }

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/bg_dial"
+    xmlns:line="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:paddingLeft="30dp"
+    android:paddingRight="30dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dial_margin_top"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/inputTxt"
+            android:background="@null"
+            android:textSize="@dimen/num_txt_size"
+            android:textColor="@android:color/white"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="119"
+            android:layout_weight="1"
+            android:inputType="number"
+            android:cursorVisible="false"
+            android:textCursorDrawable="@null"/>
+
+        <LinearLayout
+            android:id="@+id/btnDel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="18dp"
+                android:src="@drawable/btn_del"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="25dp"/>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/holo_red_dark"
+        android:layout_marginBottom="5dp"
+        ></LinearLayout>
+
+    <!-- 1 2 3-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/num1"
+                android:layout_width="@dimen/num_width_height"
+                android:layout_height="@dimen/num_width_height"
+                android:layout_weight="1"
+                android:src="@drawable/num1"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/num2"
+                android:layout_width="@dimen/num_width_height"
+                android:layout_height="@dimen/num_width_height"
+                android:layout_weight="1"
+                android:src="@drawable/num2"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/num3"
+                android:layout_width="@dimen/num_width_height"
+                android:layout_height="@dimen/num_width_height"
+                android:layout_weight="1"
+                android:src="@drawable/num3"/>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <!-- 4 5 6-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/num4"
+                android:layout_width="@dimen/num_width_height"
+                android:layout_height="@dimen/num_width_height"
+                android:layout_weight="1"
+                android:src="@drawable/num4"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/num5"
+                android:layout_width="@dimen/num_width_height"
+                android:layout_height="@dimen/num_width_height"
+                android:layout_weight="1"
+                android:src="@drawable/num5"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/num6"
+                android:layout_width="@dimen/num_width_height"
+                android:layout_height="@dimen/num_width_height"
+                android:layout_weight="1"
+                android:src="@drawable/num6"/>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <!-- 7 8 9-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/num7"
+                android:layout_width="@dimen/num_width_height"
+                android:layout_height="@dimen/num_width_height"
+                android:layout_weight="1"
+                android:src="@drawable/num7"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/num8"
+                android:layout_width="@dimen/num_width_height"
+                android:layout_height="@dimen/num_width_height"
+                android:layout_weight="1"
+                android:src="@drawable/num8"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/num9"
+                android:layout_width="@dimen/num_width_height"
+                android:layout_height="@dimen/num_width_height"
+                android:layout_weight="1"
+                android:src="@drawable/num9"/>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <!-- * 0 #-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/nums"
+                android:layout_width="@dimen/num_width_height"
+                android:layout_height="@dimen/num_width_height"
+                android:layout_weight="1"
+                android:src="@drawable/nums"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/num0"
+                android:layout_width="@dimen/num_width_height"
+                android:layout_height="@dimen/num_width_height"
+                android:layout_weight="1"
+                android:src="@drawable/num0"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <ImageView
+                android:id="@+id/numw"
+                android:layout_width="@dimen/num_width_height"
+                android:layout_height="@dimen/num_width_height"
+                android:layout_weight="1"
+                android:src="@drawable/numw"/>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="10dp">
+        <ImageView
+            android:id="@+id/btn_call"
+            android:layout_width="@dimen/btn_cial_width_height"
+            android:layout_height="@dimen/btn_cial_width_height"
+            android:src="@drawable/btn_call"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>

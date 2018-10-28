@@ -48,14 +48,14 @@ public class MessageStatusRecogListener extends StatusRecogListener {
     @Override
     public void onAsrPartialResult(String[] results, RecogResult recogResult) {
         sendStatusMessage(SpeechConstant.CALLBACK_EVENT_ASR_PARTIAL,
-                "临时识别结果，结果是“" + results[0] + "”；原始json：" + recogResult.getOrigalJson());
+                "临时识别结果，结果是@" + results[0] + "@；原始json：" + recogResult.getOrigalJson());
         super.onAsrPartialResult(results, recogResult);
     }
 
     @Override
     public void onAsrFinalResult(String[] results, RecogResult recogResult) {
         super.onAsrFinalResult(results, recogResult);
-        String message = "识别结束，结果是”" + results[0] + "”";
+        String message = "识别结束，结果是@" + results[0] + "@";
         sendStatusMessage(SpeechConstant.CALLBACK_EVENT_ASR_PARTIAL,
                 message + "；原始json：" + recogResult.getOrigalJson());
         if (speechEndTime > 0) {
