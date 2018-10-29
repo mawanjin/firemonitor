@@ -148,20 +148,20 @@ public class RecoActivity extends Activity {
                     countDown.setVisibility(View.VISIBLE);
                     break;
                 case 2:
-                    countDown.setImageDrawable(getResources().getDrawable(R.drawable.num41));
+                    countDown.setImageDrawable(getResources().getDrawable(R.drawable.time0004));
                     break;
                 case 3:
-                    countDown.setImageDrawable(getResources().getDrawable(R.drawable.num31));
+                    countDown.setImageDrawable(getResources().getDrawable(R.drawable.time0003));
                     break;
                 case 4:
-                    countDown.setImageDrawable(getResources().getDrawable(R.drawable.num21));
+                    countDown.setImageDrawable(getResources().getDrawable(R.drawable.time0002));
                     break;
                 case 5:
-                    countDown.setImageDrawable(getResources().getDrawable(R.drawable.num11));
+                    countDown.setImageDrawable(getResources().getDrawable(R.drawable.time0001));
                     break;
                 case 6:
                     countDown.setVisibility(View.INVISIBLE);
-                    countDown.setImageDrawable(getResources().getDrawable(R.drawable.num51));
+                    countDown.setImageDrawable(getResources().getDrawable(R.drawable.time0005));
                     stop();
                     btnSpeak.setImageDrawable(getResources().getDrawable(R.drawable.mic_1));
                     break;

@@ -9,6 +9,7 @@ import com.dadatop.cd.firemonitor.DialActivity;
 import com.dadatop.cd.firemonitor.MainActivity;
 import com.dadatop.cd.firemonitor.MyApplication;
 import com.dadatop.cd.firemonitor.RecoActivity;
+import com.dadatop.cd.firemonitor.setting.PrefUtil;
 import com.dadatop.cd.firemonitor.socket.data.ReadyMsg;
 import com.dadatop.cd.firemonitor.socket.data.ReadyToRecMsg;
 import com.dadatop.cd.firemonitor.socket.data.RecMsg;
@@ -41,9 +42,20 @@ public class SocketUtil {
 
     IConnectionManager mManager;
     private PulseData mPulseData = new PulseData();
+
+    int connect_status = 0;
+
+    public int getStatus(){
+        return connect_status;
+    }
+
     public  void connect(){
 
-        ConnectionInfo info = new ConnectionInfo("172.20.9.39", 8890);
+//        ConnectionInfo info = new ConnectionInfo("172.20.9.39", 8890);
+        String server = PrefUtil.getInstance(_activity).getSocketServer();
+        int port = PrefUtil.getInstance(_activity).getSocketPort();
+
+        ConnectionInfo info = new ConnectionInfo(server, port);
         mManager = OkSocket.open(info);
         mManager.registerReceiver(new SocketActionAdapter() {
             @Override
@@ -53,22 +65,24 @@ public class SocketUtil {
 
             @Override
             public void onSocketIOThreadShutdown(Context context, String action, Exception e) {
-                super.onSocketIOThreadShutdown(context, action, e);
+                connect_status = 0;
             }
 
             @Override
             public void onSocketDisconnection(Context context, ConnectionInfo info, String action, Exception e) {
-                super.onSocketDisconnection(context, info, action, e);
+                connect_status = 0;
             }
 
             @Override
             public void onSocketConnectionSuccess(Context context, ConnectionInfo info, String action) {
+                connect_status = 1;
                 SocketUtil.getInstance().sendReady();
                 OkSocket.open(info).getPulseManager().setPulseSendable(mPulseData).pulse();//Start the heartbeat.
             }
 
             @Override
             public void onSocketConnectionFailed(Context context, ConnectionInfo info, String action, Exception e) {
+                connect_status = 0;
                 super.onSocketConnectionFailed(context, info, action, e);
             }
 

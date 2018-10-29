@@ -83,6 +83,10 @@
 
         </activity>
 
+        <activity android:name=".SettingServerActivity" android:screenOrientation="portrait">
+
+        </activity>
+
     </application>
 
 </manifest>

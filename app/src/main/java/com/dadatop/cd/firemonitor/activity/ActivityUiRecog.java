@@ -7,6 +7,7 @@ import android.os.Message;
 import android.preference.PreferenceManager;
 import android.view.View;
 
+import com.dadatop.cd.firemonitor.SettingServerActivity;
 import com.dadatop.cd.firemonitor.core.recog.IStatus;
 import com.dadatop.cd.firemonitor.params.AllRecogParams;
 import com.dadatop.cd.firemonitor.params.CommonRecogParams;
@@ -159,6 +160,19 @@ public abstract class ActivityUiRecog extends ActivityCommon implements IStatus 
                 public void onClick(View v) {
                     running = true; // 是否该Activity依旧需要运行
                     Intent intent = new Intent(ActivityUiRecog.this, settingActivityClass);
+                    startActivityForResult(intent, 1);
+                }
+            });
+
+        }
+
+        if (serverSetting != null && settingActivityClass != null) {
+            serverSetting.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    running = true; // 是否该Activity依旧需要运行
+                    Intent intent = new Intent(ActivityUiRecog.this, SettingServerActivity.class);
                     startActivityForResult(intent, 1);
                 }
             });

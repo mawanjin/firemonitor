@@ -8,7 +8,7 @@
     android:id="@+id/countDown"
     android:layout_width="120dp"
     android:layout_height="120dp"
-    android:src="@drawable/num51"
+    android:src="@drawable/time0005"
     android:layout_centerInParent="true"/>
 
     <ImageView

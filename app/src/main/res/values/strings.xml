@@ -7,6 +7,7 @@
     <string name="cancel">取消</string>
     <string name="start">开始</string>
     <string name="setting">设置</string>
+    <string name="setting_server">服务器设置</string>
 
 
     <string name="infile_default"></string>

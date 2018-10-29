@@ -28,7 +28,7 @@ import java.util.ArrayList;
 public abstract class ActivityCommon extends AppCompatActivity {
     protected TextView txtLog;
     protected Button btn;
-    protected Button setting;
+    protected Button setting,serverSetting;
     protected TextView txtResult;
 
     protected Handler handler;
@@ -86,6 +86,8 @@ public abstract class ActivityCommon extends AppCompatActivity {
         txtLog = (TextView) findViewById(R.id.txtLog);
         btn = (Button) findViewById(R.id.btn);
         setting = (Button) findViewById(R.id.setting);
+        serverSetting = (Button) findViewById(R.id.serverSetting);
+
         String descText = "";
         try {
             InputStream is = getResources().openRawResource(textId);
