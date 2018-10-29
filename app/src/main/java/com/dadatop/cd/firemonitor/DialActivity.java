@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.dadatop.cd.firemonitor.recog.ActivityOfflineRecog;
+import com.dadatop.cd.firemonitor.socket.SocketUtil;
 
 public class DialActivity extends Activity implements View.OnClickListener {
 
@@ -21,12 +22,13 @@ public class DialActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MyApplication.addActivity(this);
         setContentView(R.layout.activity_dial);
-
         inputTxt = findViewById(R.id.inputTxt);
 
         initView();
         initAction();
+
     }
 
     private void initView() {
@@ -117,14 +119,19 @@ public class DialActivity extends Activity implements View.OnClickListener {
         }else if(view.getId() == btn_call.getId()){
             String str = inputTxt.getText().toString();
             if(!str.isEmpty() && str.equals("119")){
-                //todo
-                Toast.makeText(DialActivity.this,"good",Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(DialActivity.this,RecoActivity.class));
+//                startActivity(new Intent(DialActivity.this,RecoActivity.class));
+                SocketUtil.getInstance().sendReadyToRec();
 
             }else {
                 Toast.makeText(DialActivity.this,"输入有误",Toast.LENGTH_SHORT).show();
             }
 
         }
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
     }
 }

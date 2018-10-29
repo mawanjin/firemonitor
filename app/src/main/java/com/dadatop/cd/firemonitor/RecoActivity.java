@@ -19,6 +19,7 @@ import com.dadatop.cd.firemonitor.core.recog.MyRecognizer;
 import com.dadatop.cd.firemonitor.core.recog.listener.IRecogListener;
 import com.dadatop.cd.firemonitor.core.recog.listener.MessageStatusRecogListener;
 import com.dadatop.cd.firemonitor.params.OfflineRecogParams;
+import com.dadatop.cd.firemonitor.socket.SocketUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -37,13 +38,15 @@ public class RecoActivity extends Activity {
      */
     protected boolean enableOffline = true;
 
-    ImageView btnSpeak;
+    ImageView btnSpeak,countDown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reco);
+        MyApplication.addActivity(this);
         btnSpeak = findViewById(R.id.btnSpeak);
+        countDown = findViewById(R.id.countDown);
         handler = new Handler() {
 
             /*
@@ -61,21 +64,25 @@ public class RecoActivity extends Activity {
 
 
     }
+    private String TAG = "RecoActivity";
 
     protected void handleMsg(Message msg) {
         if (msg.obj != null) {
             String rs = msg.obj.toString();
+            Log.d(TAG,"original="+rs);
 
 //            txtLog.append(msg.obj.toString() + "\n");
             if(rs.contains("{\"sn\":\"\",\"error\":9,\"desc\":\"No recorder permission\",\"sub_error\":9001}")){
                 initPermission();
-            }else if(rs.contains("\"sub_error\":10005")){
+            }else if(rs.contains("错误码：10 ,10005")){
                 Toast.makeText(this,"请联网下载授权文件",Toast.LENGTH_LONG).show();
             }else if(rs.contains("results_recognition")){
                 int index = rs.indexOf("@");
                 rs = rs.substring(index+1,rs.indexOf("@",index+1));
-                Log.d("yyyy",rs);
+                SocketUtil.getInstance().sendRecMsg(rs);
             }
+
+            Log.d(TAG,rs);
 
         }
     }
@@ -123,7 +130,45 @@ public class RecoActivity extends Activity {
         // DEMO集成步骤2.2 开始识别
         params.put("vad.endpoint-timeout","3000");
         myRecognizer.start(params);
+
+        mHandler.sendEmptyMessage(1);
+        mHandler.sendEmptyMessageDelayed(2,1000);
+        mHandler.sendEmptyMessageDelayed(3,2000);
+        mHandler.sendEmptyMessageDelayed(4,3000);
+        mHandler.sendEmptyMessageDelayed(5,4000);
+        mHandler.sendEmptyMessageDelayed(6,5000);
     }
+
+    Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 1:
+                    countDown.setVisibility(View.VISIBLE);
+                    break;
+                case 2:
+                    countDown.setImageDrawable(getResources().getDrawable(R.drawable.num41));
+                    break;
+                case 3:
+                    countDown.setImageDrawable(getResources().getDrawable(R.drawable.num31));
+                    break;
+                case 4:
+                    countDown.setImageDrawable(getResources().getDrawable(R.drawable.num21));
+                    break;
+                case 5:
+                    countDown.setImageDrawable(getResources().getDrawable(R.drawable.num11));
+                    break;
+                case 6:
+                    countDown.setVisibility(View.INVISIBLE);
+                    countDown.setImageDrawable(getResources().getDrawable(R.drawable.num51));
+                    stop();
+                    btnSpeak.setImageDrawable(getResources().getDrawable(R.drawable.mic_1));
+                    break;
+
+            }
+        }
+    };
 
     /**
      * 开始录音后，手动点击“停止”按钮。
@@ -178,6 +223,9 @@ public class RecoActivity extends Activity {
             }else if(motionEvent.getAction()== MotionEvent.ACTION_UP){
                 btnSpeak.setImageDrawable(getResources().getDrawable(R.drawable.mic_1));
                 stop();
+                countDown.setVisibility(View.INVISIBLE);
+                countDown.setImageDrawable(getResources().getDrawable(R.drawable.num51));
+
             }
             btnSpeak.setOnTouchListener(speakOntouchListener);
             return false;
@@ -217,6 +265,11 @@ public class RecoActivity extends Activity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         // 此处为android 6.0以上动态授权的回调，用户自行实现。
+        initPermission();
     }
 
+    @Override
+    public void onBackPressed() {
+
+    }
 }
