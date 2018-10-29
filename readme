@@ -1,6 +1,15 @@
 命令词:
 唤醒词：快来救火   http://ai.baidu.com/tech/speech/wake#tech-demo
 
-
 18621108810
 shuangfa245800
+
+1. client-server {"no":1,"msg": "准备好了"}
+2. server-client {"no":2,"msg": "开始"}
+3. client-server {"no":3,"msg": "准备开始识别"}
+4. server-client {"no":4,"msg": "进入识别页面"}
+
+识别词：
+client->server{"no":99,"msg": "我还在"}
+返回主界面
+client->server{"no":100,"msg": "返回到主界面"}
