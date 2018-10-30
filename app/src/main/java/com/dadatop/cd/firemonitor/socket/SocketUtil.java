@@ -49,6 +49,16 @@ public class SocketUtil {
         return connect_status;
     }
 
+    private long connectTime;
+    private long disconnectTime;
+
+
+    void checkTimeout(){
+        if(disconnectTime-connectTime>30000){
+            backToPortal();
+        }
+    }
+
     public  void connect(){
 
 //        ConnectionInfo info = new ConnectionInfo("172.20.9.39", 8890);
@@ -66,15 +76,20 @@ public class SocketUtil {
             @Override
             public void onSocketIOThreadShutdown(Context context, String action, Exception e) {
                 connect_status = 0;
+                disconnectTime = System.currentTimeMillis();
+                checkTimeout();
             }
 
             @Override
             public void onSocketDisconnection(Context context, ConnectionInfo info, String action, Exception e) {
                 connect_status = 0;
+                disconnectTime = System.currentTimeMillis();
+                checkTimeout();
             }
 
             @Override
             public void onSocketConnectionSuccess(Context context, ConnectionInfo info, String action) {
+                connectTime = System.currentTimeMillis();
                 connect_status = 1;
                 SocketUtil.getInstance().sendReady();
                 OkSocket.open(info).getPulseManager().setPulseSendable(mPulseData).pulse();//Start the heartbeat.
@@ -101,6 +116,7 @@ public class SocketUtil {
                 }else if(!json_data.isEmpty() && json_data.contains("{\"no\":100")){
                     backToPortal();
                 }
+                connectTime = System.currentTimeMillis();
             }
 
             @Override
