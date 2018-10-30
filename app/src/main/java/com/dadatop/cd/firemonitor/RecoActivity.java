@@ -21,9 +21,12 @@ import com.dadatop.cd.firemonitor.core.recog.listener.MessageStatusRecogListener
 import com.dadatop.cd.firemonitor.params.OfflineRecogParams;
 import com.dadatop.cd.firemonitor.socket.SocketUtil;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class RecoActivity extends Activity {
 
@@ -130,19 +133,16 @@ public class RecoActivity extends Activity {
         // DEMO集成步骤2.2 开始识别
         params.put("vad.endpoint-timeout","3000");
         myRecognizer.start(params);
-
-        mHandler.sendEmptyMessage(1);
-        mHandler.sendEmptyMessageDelayed(2,1000);
-        mHandler.sendEmptyMessageDelayed(3,2000);
-        mHandler.sendEmptyMessageDelayed(4,3000);
-        mHandler.sendEmptyMessageDelayed(5,4000);
-        mHandler.sendEmptyMessageDelayed(6,5000);
     }
+
+    boolean pressed = false;
+    private int count = 1;
 
     Handler mHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+            if(!pressed)return;
             switch (msg.what){
                 case 1:
                     countDown.setVisibility(View.VISIBLE);
@@ -165,7 +165,6 @@ public class RecoActivity extends Activity {
                     stop();
                     btnSpeak.setImageDrawable(getResources().getDrawable(R.drawable.mic_1));
                     break;
-
             }
         }
     };
@@ -218,14 +217,28 @@ public class RecoActivity extends Activity {
         public boolean onTouch(View view, MotionEvent motionEvent) {
 
             if(motionEvent.getAction() == MotionEvent.ACTION_DOWN){
+
                 btnSpeak.setImageDrawable(getResources().getDrawable(R.drawable.mic_2));
                 start();
+                count =1;
+                pressed = true;
+                mHandler.sendEmptyMessage(count);
+                try{
+                    timer = new Timer();
+                    timer.schedule(new MyTask(),0,1000);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+
             }else if(motionEvent.getAction()== MotionEvent.ACTION_UP){
                 btnSpeak.setImageDrawable(getResources().getDrawable(R.drawable.mic_1));
                 stop();
                 countDown.setVisibility(View.INVISIBLE);
-                countDown.setImageDrawable(getResources().getDrawable(R.drawable.num51));
-
+                countDown.setImageDrawable(getResources().getDrawable(R.drawable.time0005));
+                pressed = false;
+                timer.cancel();
+                count =1;
             }
             btnSpeak.setOnTouchListener(speakOntouchListener);
             return false;
@@ -272,4 +285,16 @@ public class RecoActivity extends Activity {
     public void onBackPressed() {
 
     }
+
+    Timer timer = new Timer();
+
+
+    class MyTask extends TimerTask{
+
+        @Override
+        public void run() {
+            mHandler.sendEmptyMessage(count++);
+        }
+    }
+
 }
