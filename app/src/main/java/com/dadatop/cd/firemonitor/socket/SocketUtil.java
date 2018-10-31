@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.dadatop.cd.firemonitor.DialActivity;
 import com.dadatop.cd.firemonitor.MainActivity;
+import com.dadatop.cd.firemonitor.Mp3Activity;
 import com.dadatop.cd.firemonitor.MyApplication;
 import com.dadatop.cd.firemonitor.RecoActivity;
 import com.dadatop.cd.firemonitor.setting.PrefUtil;
@@ -115,6 +116,8 @@ public class SocketUtil {
                     goToRec();
                 }else if(!json_data.isEmpty() && json_data.contains("{\"no\":100")){
                     backToPortal();
+                }else if(!json_data.isEmpty() && json_data.contains("{\"no\":5")){
+                    gotoMp3(json_data);
                 }
                 connectTime = System.currentTimeMillis();
             }
@@ -130,6 +133,12 @@ public class SocketUtil {
             }
         });
         mManager.connect();
+    }
+
+    private void gotoMp3(String json_data) {
+        Intent intent = new Intent(_activity,Mp3Activity.class);
+        intent.putExtra("mp3",json_data);
+        _activity.startActivity(intent);
     }
 
     private void backToPortal() {

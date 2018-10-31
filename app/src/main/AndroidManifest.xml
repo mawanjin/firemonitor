@@ -87,6 +87,10 @@
 
         </activity>
 
+        <activity android:name=".Mp3Activity" android:screenOrientation="portrait">
+
+        </activity>
+
     </application>
 
 </manifest>
