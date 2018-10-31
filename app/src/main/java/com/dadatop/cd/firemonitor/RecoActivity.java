@@ -2,6 +2,10 @@ package com.dadatop.cd.firemonitor;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
@@ -64,7 +68,12 @@ public class RecoActivity extends Activity {
         initAction();
         initReco();
 
+        IntentFilter filter = new IntentFilter("com.dadatop.cd.firemonitor.operation");
+        try {
+            registerReceiver(receiver,filter);
+        }catch (Exception e){
 
+        }
     }
     private String TAG = "RecoActivity";
 
@@ -195,19 +204,26 @@ public class RecoActivity extends Activity {
         // 如果之前调用过myRecognizer.loadOfflineEngine()， release()里会自动调用释放离线资源
         myRecognizer.release();
         super.onDestroy();
+
+        try{
+            unregisterReceiver(receiver);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
     }
 
 
     SpeakOntouchListener speakOntouchListener = new SpeakOntouchListener();
 
     private void initAction() {
-        btnSpeak.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-        btnSpeak.setOnTouchListener(speakOntouchListener);
+//        btnSpeak.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
+//        btnSpeak.setOnTouchListener(speakOntouchListener);
     }
 
     class SpeakOntouchListener implements View.OnTouchListener{
@@ -293,6 +309,24 @@ public class RecoActivity extends Activity {
         @Override
         public void run() {
             mHandler.sendEmptyMessage(count++);
+        }
+    }
+
+
+
+    OpReceiver receiver = new OpReceiver();
+
+    class OpReceiver extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getStringExtra("action");
+
+            if(action.equals("1")){
+                start();
+            }else if(action.equals("2")){
+                stop();
+            }
         }
     }
 

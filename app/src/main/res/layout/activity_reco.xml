@@ -19,7 +19,8 @@
         android:src="@drawable/mic_1"
         android:layout_below="@+id/countDown"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -28,6 +29,7 @@
         android:text="按住说话"
         android:textColor="@android:color/white"
         android:layout_below="@+id/btnSpeak"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
 
 </RelativeLayout>

@@ -130,6 +130,10 @@ public class SocketUtil {
                     backToPortal();
                 }else if(!json_data.isEmpty() && json_data.contains("{\"no\":5")){
                     gotoMp3(json_data);
+                }else if(!json_data.isEmpty() && json_data.contains("{\"no\":6")){//开始
+                    sendStart();
+                }else if(!json_data.isEmpty() && json_data.contains("{\"no\":7")){//结束
+                    sendEnd();
                 }
                 connectTime = System.currentTimeMillis();
             }
@@ -145,6 +149,18 @@ public class SocketUtil {
             }
         });
         mManager.connect();
+    }
+
+    private void sendStart() {
+        Intent intent = new Intent("com.dadatop.cd.firemonitor.operation");
+        intent.putExtra("action","1");
+        _activity.sendBroadcast(intent);
+    }
+
+    private void sendEnd() {
+        Intent intent = new Intent("com.dadatop.cd.firemonitor.operation");
+        intent.putExtra("action","2");
+        _activity.sendBroadcast(intent);
     }
 
     private void gotoMp3(String json_data) {
