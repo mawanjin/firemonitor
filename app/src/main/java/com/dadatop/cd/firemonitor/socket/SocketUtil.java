@@ -3,13 +3,15 @@ package com.dadatop.cd.firemonitor.socket;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 import com.dadatop.cd.firemonitor.DialActivity;
-import com.dadatop.cd.firemonitor.MainActivity;
 import com.dadatop.cd.firemonitor.Mp3Activity;
 import com.dadatop.cd.firemonitor.MyApplication;
 import com.dadatop.cd.firemonitor.RecoActivity;
+import com.dadatop.cd.firemonitor.core.TimeoutmonitorTask;
 import com.dadatop.cd.firemonitor.setting.PrefUtil;
 import com.dadatop.cd.firemonitor.socket.data.ReadyMsg;
 import com.dadatop.cd.firemonitor.socket.data.ReadyToRecMsg;
@@ -23,6 +25,7 @@ import com.xuhao.android.libsocket.sdk.client.bean.IPulseSendable;
 import com.xuhao.android.libsocket.sdk.client.connection.IConnectionManager;
 
 import java.nio.charset.Charset;
+import java.util.Timer;
 
 public class SocketUtil {
 
@@ -36,6 +39,7 @@ public class SocketUtil {
         }
         return socketUtil;
     }
+
 
     public void set_activity(Activity activity){
         _activity = activity;
@@ -55,12 +59,20 @@ public class SocketUtil {
 
 
     void checkTimeout(){
-        if(disconnectTime-connectTime>30000){
+        Log.d("uuuuuuu","method checkTimeout() called.disconnectTime="+disconnectTime+";currentTime="+System.currentTimeMillis());
+        if(connectTime<disconnectTime && System.currentTimeMillis()-disconnectTime>5000){
             backToPortal();
         }
     }
 
     public  void connect(){
+
+        try{
+            timer = new Timer();
+            timer.schedule(new TimeoutmonitorTask(mHandler),0,1000);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
 //        ConnectionInfo info = new ConnectionInfo("172.20.9.39", 8890);
         String server = PrefUtil.getInstance(_activity).getSocketServer();
@@ -143,6 +155,7 @@ public class SocketUtil {
 
     private void backToPortal() {
         MyApplication.clearActivities();
+        timer.cancel();
     }
 
     private void goToDial() {
@@ -175,7 +188,18 @@ public class SocketUtil {
         if(mManager!=null){
             mManager.send(new RecMsg(msg));
         }
+
     }
 
+    static Timer timer = new Timer();
+
+
+    Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            checkTimeout();
+        }
+    };
 
 }

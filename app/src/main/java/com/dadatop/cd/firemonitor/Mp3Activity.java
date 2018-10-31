@@ -13,7 +13,7 @@ public class Mp3Activity extends Activity{
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mp3);
-        String mp3 = getIntent().getStringExtra("mp3");
+        mp3 = getIntent().getStringExtra("mp3");
         play();
 
     }

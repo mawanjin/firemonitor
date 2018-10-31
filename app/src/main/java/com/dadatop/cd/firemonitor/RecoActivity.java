@@ -21,7 +21,6 @@ import com.dadatop.cd.firemonitor.core.recog.listener.MessageStatusRecogListener
 import com.dadatop.cd.firemonitor.params.OfflineRecogParams;
 import com.dadatop.cd.firemonitor.socket.SocketUtil;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
