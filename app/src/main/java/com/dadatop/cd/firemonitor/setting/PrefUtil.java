@@ -21,7 +21,8 @@ public class PrefUtil {
     }
 
     public String getSocketServer() {
-        return mSharedPreferences.getString("socket_server", "172.20.9.39");
+//        return mSharedPreferences.getString("socket_server", "172.20.9.39");
+        return mSharedPreferences.getString("socket_server", "192.168.1.7");
     }
 
     public void setSocketServer(String listStr) {

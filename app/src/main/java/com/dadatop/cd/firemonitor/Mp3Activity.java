@@ -5,7 +5,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 
 public class Mp3Activity extends Activity{
-    private static MediaPlayer mediaPlayer=null;
+    private  MediaPlayer mediaPlayer=null;
 
     private String mp3 = "1.mp3";
 
@@ -45,5 +45,11 @@ public class Mp3Activity extends Activity{
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mediaPlayer = null;
     }
 }
