@@ -50,6 +50,7 @@ public class Mp3Activity extends Activity{
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mediaPlayer.release();
         mediaPlayer = null;
     }
 }
