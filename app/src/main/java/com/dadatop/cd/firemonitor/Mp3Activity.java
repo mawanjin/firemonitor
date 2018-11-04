@@ -12,6 +12,7 @@ public class Mp3Activity extends Activity{
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        MyApplication.addActivity(this);
         setContentView(R.layout.activity_mp3);
         mp3 = getIntent().getStringExtra("mp3");
         play();
@@ -50,7 +51,10 @@ public class Mp3Activity extends Activity{
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mediaPlayer.release();
-        mediaPlayer = null;
+        if(mediaPlayer!=null){
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 }
