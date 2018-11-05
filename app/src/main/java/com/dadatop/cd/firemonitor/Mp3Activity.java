@@ -1,19 +1,25 @@
 package com.dadatop.cd.firemonitor;
 
 import android.app.Activity;
+import android.content.Context;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 
 public class Mp3Activity extends Activity{
     private  MediaPlayer mediaPlayer=null;
 
     private String mp3 = "1.mp3";
+    private AudioManager audioManager;
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         setContentView(R.layout.activity_mp3);
         mp3 = getIntent().getStringExtra("mp3");
+        if(mp3==null)mp3 = "1.mp3";
         play();
 
     }
@@ -35,6 +41,7 @@ public class Mp3Activity extends Activity{
                 mediaPlayer=MediaPlayer.create(this, R.raw.six);
             }
         }
+        changeToReceiver();
 
         mediaPlayer.setLooping(false);
         mediaPlayer.seekTo(0);
@@ -46,6 +53,21 @@ public class Mp3Activity extends Activity{
             }
         });
     }
+
+    /**
+     * 切换到听筒
+     */
+    public void changeToReceiver(){
+        audioManager.setSpeakerphoneOn(false);
+        setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
+            audioManager.setMode(AudioManager.MODE_IN_COMMUNICATION);
+        } else {
+            audioManager.setMode(AudioManager.MODE_IN_CALL);
+        }
+    }
+
 
     @Override
     protected void onDestroy() {
