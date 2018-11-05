@@ -2,9 +2,6 @@ package com.dadatop.cd.firemonitor.socket.data;
 
 import com.xuhao.android.common.interfacies.client.msg.ISendable;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.charset.Charset;
