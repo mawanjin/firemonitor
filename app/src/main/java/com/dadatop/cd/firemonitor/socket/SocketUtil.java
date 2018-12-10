@@ -89,15 +89,18 @@ public class SocketUtil {
             @Override
             public void onSocketIOThreadShutdown(Context context, String action, Exception e) {
                 connect_status = 0;
-                disconnectTime = System.currentTimeMillis();
-                checkTimeout();
+//                disconnectTime = System.currentTimeMillis();
+//                checkTimeout();
+                backToPortal();
+
             }
 
             @Override
             public void onSocketDisconnection(Context context, ConnectionInfo info, String action, Exception e) {
                 connect_status = 0;
-                disconnectTime = System.currentTimeMillis();
-                checkTimeout();
+//                disconnectTime = System.currentTimeMillis();
+//                checkTimeout();
+                backToPortal();
             }
 
             @Override

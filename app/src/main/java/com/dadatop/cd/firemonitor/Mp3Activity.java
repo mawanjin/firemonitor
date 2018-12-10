@@ -40,6 +40,8 @@ public class Mp3Activity extends Activity{
                 mediaPlayer=MediaPlayer.create(this, R.raw.five);
             }else if(mp3.contains("6.mp3")){
                 mediaPlayer=MediaPlayer.create(this, R.raw.six);
+            }else if(mp3.contains("7.mp3")){
+                mediaPlayer=MediaPlayer.create(this, R.raw.seven);
             }
         }
         changeToReceiver();
