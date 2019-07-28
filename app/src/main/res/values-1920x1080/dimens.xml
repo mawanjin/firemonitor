@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="num_width_height">75dip</dimen>
-    <dimen name="dial_margin_top">110dip</dimen>
+    <dimen name="dial_margin_top">150dip</dimen>
     <dimen name="btn_cial_width_height">90dip</dimen>
     <dimen name="num_txt_size">40dip</dimen>
 </resources>

@@ -223,7 +223,7 @@ public class RecoActivity extends Activity {
 //
 //            }
 //        });
-//        btnSpeak.setOnTouchListener(speakOntouchListener);
+        btnSpeak.setOnTouchListener(speakOntouchListener);
     }
 
     class SpeakOntouchListener implements View.OnTouchListener{
@@ -244,7 +244,7 @@ public class RecoActivity extends Activity {
                 }catch (Exception e){
                     e.printStackTrace();
                 }
-
+                return true;
 
             }else if(motionEvent.getAction()== MotionEvent.ACTION_UP){
                 btnSpeak.setImageDrawable(getResources().getDrawable(R.drawable.mic_1));
@@ -254,8 +254,9 @@ public class RecoActivity extends Activity {
                 pressed = false;
                 timer.cancel();
                 count =1;
+                return true;
             }
-            btnSpeak.setOnTouchListener(speakOntouchListener);
+//            btnSpeak.setOnTouchListener(speakOntouchListener);
             return false;
         }
     }

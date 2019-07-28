@@ -10,7 +10,7 @@ import android.os.Bundle;
 public class Mp3Activity extends Activity{
     private  MediaPlayer mediaPlayer=null;
 
-    private String mp3 = "1.mp3";
+    private String mp3 = "0.mp3";
     private AudioManager audioManager;
 
     @Override
@@ -20,7 +20,7 @@ public class Mp3Activity extends Activity{
         audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
         setContentView(R.layout.activity_mp3);
         mp3 = getIntent().getStringExtra("mp3");
-        if(mp3==null)mp3 = "1.mp3";
+        if(mp3==null)mp3 = "0.mp3";
         play();
 
     }
