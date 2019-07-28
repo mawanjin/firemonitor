@@ -107,7 +107,7 @@ public class SocketUtil {
             public void onSocketConnectionSuccess(Context context, ConnectionInfo info, String action) {
                 connectTime = System.currentTimeMillis();
                 connect_status = 1;
-                SocketUtil.getInstance().sendReady();
+//                SocketUtil.getInstance().sendReady();
                 OkSocket.open(info).getPulseManager().setPulseSendable(mPulseData).pulse();//Start the heartbeat.
             }
 
@@ -220,5 +220,10 @@ public class SocketUtil {
             checkTimeout();
         }
     };
+
+
+    public boolean isConnected(){
+        return SocketUtil.getInstance().getStatus()==1?true:false;
+    }
 
 }

@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.dadatop.cd.firemonitor.recog.ActivityOfflineRecog;
 import com.dadatop.cd.firemonitor.socket.SocketUtil;
@@ -29,6 +30,18 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        findViewById(R.id.root).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(SocketUtil.getInstance().isConnected()){
+                    SocketUtil.getInstance().sendReady();
+                }else {
+                    Toast.makeText(MainActivity.this,"服务器未连接",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
     }
 
     /**

@@ -28,7 +28,9 @@ public class Mp3Activity extends Activity{
     private void play() {
         if(mediaPlayer==null){
             //创建播放实例
-            if(mp3.contains("1.mp3")){
+            if(mp3.contains("0.mp3")){
+                mediaPlayer=MediaPlayer.create(this, R.raw.zero);
+            } else if(mp3.contains("1.mp3")){
                 mediaPlayer=MediaPlayer.create(this, R.raw.one);
             }else if(mp3.contains("2.mp3")){
                 mediaPlayer=MediaPlayer.create(this, R.raw.two);
@@ -40,8 +42,6 @@ public class Mp3Activity extends Activity{
                 mediaPlayer=MediaPlayer.create(this, R.raw.five);
             }else if(mp3.contains("6.mp3")){
                 mediaPlayer=MediaPlayer.create(this, R.raw.six);
-            }else if(mp3.contains("7.mp3")){
-                mediaPlayer=MediaPlayer.create(this, R.raw.seven);
             }
         }
         changeToReceiver();

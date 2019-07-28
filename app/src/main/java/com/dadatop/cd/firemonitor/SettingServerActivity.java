@@ -58,6 +58,7 @@ public class SettingServerActivity extends Activity{
 
     }
 
+
     Handler mHandler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
