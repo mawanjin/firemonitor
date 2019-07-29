@@ -34,5 +34,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation files('libs/bdasr_V3_20180801_d6f298a.jar')
-    implementation 'com.tonystark.android:socket:3.1.1'
+//    implementation 'com.tonystark.android:socket:3.1.1'
 }
