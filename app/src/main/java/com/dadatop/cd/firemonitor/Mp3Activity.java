@@ -61,7 +61,7 @@ public class Mp3Activity extends Activity{
      * 切换到听筒
      */
     public void changeToReceiver(){
-        audioManager.setSpeakerphoneOn(false);
+        audioManager.setSpeakerphoneOn(true);
         setVolumeControlStream(AudioManager.STREAM_VOICE_CALL);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB){
