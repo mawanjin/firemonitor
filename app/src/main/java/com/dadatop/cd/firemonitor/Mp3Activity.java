@@ -44,6 +44,11 @@ public class Mp3Activity extends Activity{
                 mediaPlayer=MediaPlayer.create(this, R.raw.six);
             }
         }
+
+        if(mediaPlayer==null){
+            mediaPlayer=MediaPlayer.create(this, R.raw.zero);
+        }
+
         changeToReceiver();
 
         mediaPlayer.setLooping(false);
